@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia de Segurança Digital para Idosos</title>
+    <!-- Ícones Lucide para recursos de acessibilidade -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Configurações globais focadas em acessibilidade e legibilidade */
+        :root {
+            --primary-blue: #003B73;
+            --accent-gold: #FFC72C;
+            --emergency-red: #D11A2A;
+            --emergency-red-hover: #A8111E;
+            --bg-light: #F4F7F9;
+            --text-dark: #1A2530;
+            --card-bg: #FFFFFF;
+            --card-border: #E1E8ED;
+            
+            /* Tamanho de fonte padrão grande para idosos */
+            --font-scale: 1.1rem; 
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            font-size: var(--font-scale);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        /* Barra de Acessibilidade Superior */
+        .accessibility-bar {
+            background-color: #111;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .accessibility-title {
+            font-size: 0.95rem;
+            font-weight: bold;
+        }
+
+        .accessibility-controls {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-access {
+            background: #222;
+            color: white;
+            border: 2px solid #555;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-access:hover, .btn-access:focus {
+            background: var(--accent-gold);
+            color: black;
+            border-color: var(--accent-gold);
+        }
+
+        /* Cabeçalho principal conforme imagem enviada */
+        header {
+            background-color: var(--primary-blue);
+            color: white;
+            text-align: center;
+            padding: 40px 20px 45px 20px;
+            border-bottom: 8px solid var(--accent-gold);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-title {
+            font-size: 2.3rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .header-subtitle {
+            font-size: 1.25rem;
+            font-weight: 400;
+            opacity: 0.95;
+            margin-bottom: 30px;
+        }
+
+        /* Botão de Emergência ("Preciso de ajuda agora") */
+        .btn-emergency {
+            background-color: var(--emergency-red);
+            color: white;
+            font-size: 1.25rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: 3px solid white;
+            padding: 18px 40px;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(209, 26, 42, 0.4);
+            transition: transform 0.15s ease, background-color 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            max-width: 100%;
+            text-align: center;
+        }
+
+        .btn-emergency:hover, .btn-emergency:focus {
+            background-color: var(--emergency-red-hover);
+            transform: scale(1.03);
+            outline: none;
+        }
+
+        .btn-emergency:active {
+            transform: scale(0.98);
+        }
+
+        /* Container de conteúdo */
+        main {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Título das Dicas */
+        .section-title-container {
+            border-bottom: 4px solid var(--accent-gold);
+            margin-bottom: 30px;
+            padding-bottom: 8px;
+        }
+
+        .section-title {
+            color: var(--primary-blue);
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        /* Lista de Dicas */
+        .tips-list {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* Cartão de Dica (Estilo idêntico ao da imagem, mas com melhorias) */
+        .tip-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            border-left: 10px solid var(--primary-blue);
+            padding: 24px;
+            position: relative;
+            transition: transform 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Cabeçalho do Cartão: Número e Áudio */
+        .tip-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .tip-title {
+            color: var(--primary-blue);
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-right: auto;
+        }
+
+        .tip-description {
+            color: #4A5568;
+            font-size: 1.15rem;
+            line-height: 1.7;
+        }
+
+        /* Botão para ouvir a dica em áudio */
+        .btn-audio {
+            background-color: #E2E8F0;
+            border: none;
+            color: var(--primary-blue);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-audio:hover, .btn-audio:focus {
+            background-color: var(--primary-blue);
+            color: white;
+            outline: none;
+        }
+
+        /* Estilo para Texto de Exemplo na Dica 1 */
+        .example-box {
+            background-color: #F8FAFC;
+            border: 2px dashed #CBD5E1;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-family: monospace;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #0F172A;
+            display: inline-block;
+        }
+
+        /* --- MODAL DE EMERGÊNCIA --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: white;
+            width: 100%;
+            max-width: 600px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 4px solid var(--emergency-red);
+            animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes modalSlideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            background-color: var(--emergency-red);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+        }
+
+        .modal-header h2 {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .modal-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .modal-body {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Botões de Ligação Grandes para Dedos Idosos */
+        .call-option-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #F8FAFC;
+            border: 3px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 20px;
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .call-option-btn:hover, .call-option-btn:focus {
+            background-color: #EDF2F7;
+            border-color: var(--primary-blue);
+            outline: none;
+        }
+
+        .call-option-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-align: left;
+        }
+
+        .call-icon-container {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .icon-police {
+            background-color: #EBF8FF;
+            color: #2B6CB0;
+        }
+
+        .icon-personal {
+            background-color: #F0FFF4;
+            color: #38A169;
+        }
+
+        .call-label {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2D3748;
+        }
+
+        .call-subtext {
+            font-size: 1rem;
+            color: #718096;
+        }
+
+        .arrow-right-icon {
+            color: #A0AEC0;
+        }
+
+        /* Sessão para Configurar Contato no Próprio App */
+        .custom-contact-setup {
+            background-color: #EDF2F7;
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .custom-contact-setup label {
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: #4A5568;
+        }
+
+        .custom-contact-inputs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .custom-contact-inputs input {
+            flex: 1;
+            min-width: 140px;
+            padding: 10px;
+            border: 2px solid #CBD5E1;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .btn-save-contact {
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn-save-contact:hover {
+            background-color: #002D59;
+        }
+
+        /* Botão Fechar Modal */
+        .btn-close-modal {
+            background-color: #718096;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-close-modal:hover {
+            background-color: #4A5568;
+        }
+
+        /* Notificação de Feedback Customizada */
+        .custom-toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #2D3748;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+            display: none;
+            z-index: 1100;
+        }
+
+        /* Rodapé de Informação */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #718096;
+            font-size: 0.95rem;
+            margin-top: 40px;
+        }
+
+        /* Responsividade Extrema */
+        @media (max-width: 600px) {
+            .header-title {
+                font-size: 1.8rem;
+            }
+            .header-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 20px;
+            }
+            .btn-emergency {
+                padding: 15px 25px;
+                font-size: 1.1rem;
+                width: 100%;
+            }
+            .tip-card {
+                padding: 18px;
+            }
+            .tip-title {
+                font-size: 1.2rem;
+            }
+            .tip-description {
+                font-size: 1.05rem;
+            }
+            .accessibility-bar {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barra Superior de Recursos de Acessibilidade -->
+    <div class="accessibility-bar" aria-label="Ferramentas de acessibilidade">
+        <span class="accessibility-title">Ferramentas de Leitura:</span>
+        <div class="accessibility-controls">
+            <button class="btn-access" onclick="changeFontSize('decrease')" title="Diminuir tamanho da letra">
+                <i data-lucide="minus"></i> Letra Menor
+            </button>
+            <button class="btn-access" onclick="changeFontSize('increase')" title="Aumentar tamanho da letra">
+                <i data-lucide="plus"></i> Letra Maior
+            </button>
+        </div>
+    </div>
+
+    <!-- Cabeçalho (Fiel ao cabeçalho azul e amarelo da imagem) -->
+    <header>
+        <h1 class="header-title">Guia de Segurança Digital</h1>
+        <p class="header-subtitle">Proteja-se e navegue com tranquilidade na internet.</p>
+        
+        <!-- Botão de Emergência Vermelho -->
+        <button class="btn-emergency" onclick="openEmergencyModal()">
+            <i data-lucide="alert-triangle"></i> PRECISO DE AJUDA AGORA
+        </button>
+    </header>
+
+    <main>
+        <!-- Título da Seção -->
+        <div class="section-title-container">
+            <h2 class="section-title">Dicas Importantes</h2>
+        </div>
+
+        <!-- Lista de Dicas -->
+        <div class="tips-list">
+            
+            <!-- Dica 1 -->
+            <div class="tip-card" id="tip1">
+                <div class="tip-card-header">
+                    <span class="tip-title">1. Use senhas longas</span>
+                    <button class="btn-audio" onclick="speakTip(1)" title="Ouvir esta dica">
+                        <i data-lucide="volume-2"></i>
+                    </button>
+                </div>
+                <div class="tip-description">
+                    Prefira frases de que você goste em vez de usar apenas números ou datas comuns. <br>
+                    <div class="example-box">Exemplo: "EuAmoMinhaFamilia2024!"</div>
+                </div>
+            </div>
+
+            <!-- Dica 2 -->
+            <div class="tip-card" id="tip2">
+                <div class="tip-card-header">
+                    <span class="tip-title">2. Desconfie de urgência</span>
+                    <button class="btn-audio" onclick="speakTip(2)" title="Ouvir esta dica">
+                        <i data-lucide="volume-2"></i>
+                    </button>
+                </div>
+                <div class="tip-description">
+                    Se alguém mandar mensagem no WhatsApp pedindo dinheiro urgente dizendo ser uma emergência (um filho ou parente), <strong>pare imediatamente</strong> e ligue diretamente por chamada comum de voz para a pessoa antes de transferir qualquer valor.
+                </div>
+            </div>
+
+            <!-- Dica 3 -->
+            <div class="tip-card" id="tip3">
+                <div class="tip-card-header">
+                    <span class="tip-title">3. Não clique em tudo</span>
+                    <button class="btn-audio" onclick="speakTip(3)" title="Ouvir esta dica">
+                        <i data-lucide="volume-2"></i>
+                    </button>
+                </div>
+                <div class="tip-description">
+                    Links enviados por mensagem desconhecida que prometem prêmios, dinheiro fácil, descontos mágicos ou aviso de bloqueio de conta bancária geralmente são armadilhas. Não abra!
+                </div>
+            </div>
+
+            <!-- Dica Extra 4 -->
+            <div class="tip-card" id="tip4">
+                <div class="tip-card-header">
+                    <span class="tip-title">4. Ligação de Banco falsa</span>
+                    <button class="btn-audio" onclick="speakTip(4)" title="Ouvir esta dica">
+                        <i data-lucide="volume-2"></i>
+                    </button>
+                </div>
+                <div class="tip-description">
+                    Os bancos nunca ligam pedindo a sua senha, nem pedem para fazer transferências Pix para fazer "testes" ou por motivos de segurança. Se receber essa ligação, desligue imediatamente.
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Modal de Ajuda de Emergência -->
+    <div class="modal-overlay" id="emergencyModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Central de Ajuda</h2>
+                <p>Escolha uma opção de forma segura:</p>
+            </div>
+            
+            <div class="modal-body">
+                <!-- Opção 1: Ligar para a Polícia -->
+                <a href="tel:190" class="call-option-btn">
+                    <div class="call-option-info">
+                        <div class="call-icon-container icon-police">
+                            <i data-lucide="shield-alert" style="width: 32px; height: 32px;"></i>
+                        </div>
+                        <div>
+                            <div class="call-label">Chamar a Polícia (190)</div>
+                            <div class="call-subtext">Ligar para a Polícia Militar</div>
+                        </div>
+                    </div>
+                    <i data-lucide="chevron-right" class="arrow-right-icon"></i>
+                </a>
+
+                <!-- Opção 2: Contato de Confiança -->
+                <a href="tel:08000000000" id="personalContactLink" class="call-option-btn">
+                    <div class="call-option-info">
+                        <div class="call-icon-container icon-personal">
+                            <i data-lucide="phone-call" style="width: 32px; height: 32px;"></i>
+                        </div>
+                        <div>
+                            <div class="call-label" id="personalContactName">Contato de Emergência</div>
+                            <div class="call-subtext" id="personalContactPhone">Nenhum salvo ainda</div>
+                        </div>
+                    </div>
+                    <i data-lucide="chevron-right" class="arrow-right-icon"></i>
+                </a>
+
+                <!-- Configuração Prática do Contato de Emergência -->
+                <div class="custom-contact-setup">
+                    <label for="contactName">Salvar um familiar ou amigo de confiança aqui:</label>
+                    <div class="custom-contact-inputs">
+                        <input type="text" id="contactName" placeholder="Nome (Ex: Filho)" aria-label="Nome do contato de confiança">
+                        <input type="tel" id="contactPhone" placeholder="Telefone (DDD + Número)" aria-label="Telefone do contato de confiança">
+                        <button class="btn-save-contact" onclick="saveEmergencyContact()">Salvar</button>
+                    </div>
+                </div>
+
+                <!-- Botão de Fechar -->
+                <button class="btn-close-modal" onclick="closeEmergencyModal()">
+                    <i data-lucide="x" style="vertical-align: middle; margin-right: 5px;"></i> Fechar e Voltar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mensagem Flutuante de Feedback -->
+    <div class="custom-toast" id="toastMessage">Contato salvo com sucesso!</div>
+
+    <footer>
+        Guia Prático de Segurança Digital para Idosos • Navegue Sempre com Segurança.
+    </footer>
+
+    <script>
+        // Inicializar os ícones do Lucide
+        lucide.createIcons();
+
+        // Controlar tamanho da letra para acessibilidade visual
+        let currentScale = 1.1; 
+        function changeFontSize(action) {
+            if (action === 'increase' && currentScale < 1.6) {
+                currentScale += 0.1;
+            } else if (action === 'decrease' && currentScale > 0.9) {
+                currentScale -= 0.1;
+            }
+            document.documentElement.style.setProperty('--font-scale', `${currentScale}rem`);
+        }
+
+        // Modal de Emergência
+        function openEmergencyModal() {
+            loadEmergencyContact();
+            document.getElementById('emergencyModal').classList.add('active');
+            document.body.style.overflow = 'hidden'; // impede rolagem ao fundo do modal
+        }
+
+        function closeEmergencyModal() {
+            document.getElementById('emergencyModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Salvar contato de emergência em memória/local (Usa localStorage para que fique gravado de fato no navegador do idoso)
+        function saveEmergencyContact() {
+            const name = document.getElementById('contactName').value.trim();
+            const phone = document.getElementById('contactPhone').value.trim();
+
+            if (!name || !phone) {
+                showToast("Por favor, preencha o Nome e o Telefone.");
+                return;
+            }
+
+            localStorage.setItem('emergency_name', name);
+            localStorage.setItem('emergency_phone', phone);
+
+            showToast("Contato salvo com sucesso!");
+            loadEmergencyContact();
+
+            // Limpa os campos de digitação
+            document.getElementById('contactName').value = '';
+            document.getElementById('contactPhone').value = '';
+        }
+
+        // Carregar o contato de emergência salvo
+        function loadEmergencyContact() {
+            const savedName = localStorage.getItem('emergency_name');
+            const savedPhone = localStorage.getItem('emergency_phone');
+
+            const nameEl = document.getElementById('personalContactName');
+            const phoneEl = document.getElementById('personalContactPhone');
+            const linkEl = document.getElementById('personalContactLink');
+
+            if (savedName && savedPhone) {
+                nameEl.textContent = `Ligar para ${savedName}`;
+                phoneEl.textContent = savedPhone;
+                linkEl.setAttribute('href', `tel:${savedPhone}`);
+            } else {
+                nameEl.textContent = "Contato de Emergência";
+                phoneEl.textContent = "Clique abaixo para salvar um contato";
+                linkEl.setAttribute('href', '#');
+            }
+        }
+
+        // Mostrar aviso rápido personalizado sem quebrar fluxo (Evitando o alert nativo do navegador)
+        function showToast(message) {
+            const toast = document.getElementById('toastMessage');
+            toast.textContent = message;
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+
+        // Leitor de Áudio Acessível (Utiliza Web Speech Synthesis)
+        function speakTip(tipNumber) {
+            // Cancelar qualquer fala ativa no momento para não encavalar
+            window.speechSynthesis.cancel();
+
+            let textToSpeak = "";
+            if (tipNumber === 1) {
+                textToSpeak = "Dica um: Use senhas longas. Prefira frases de que você goste em vez de usar apenas números ou datas comuns. Como por exemplo: Eu Amo Minha Família dois mil e vinte e quatro, com ponto de exclamação no final.";
+            } else if (tipNumber === 2) {
+                textToSpeak = "Dica dois: Desconfie de urgência. Se alguém mandar mensagem no WhatsApp pedindo dinheiro rápido ou de forma urgente dizendo ser uma emergência, como um filho ou parente, pare imediatamente e ligue por chamada de voz comum para o número real dessa pessoa antes de enviar qualquer valor.";
+            } else if (tipNumber === 3) {
+                textToSpeak = "Dica três: Não clique em tudo. Links recebidos por mensagens de estranhos prometendo prêmios, dinheiro fácil ou alegando bloqueios em suas contas bancárias geralmente são golpes. Não abra de jeito nenhum.";
+            } else if (tipNumber === 4) {
+                textToSpeak = "Dica quatro: Ligação de Banco falsa. Os bancos reais nunca ligam pedindo senhas de cartões ou solicitando testes de transferência ou pix sob desculpa de segurança. Se isso acontecer, desligue na hora.";
+            }
+
+            if (textToSpeak !== "") {
+                const utterance = new SpeechSynthesisUtterance(textToSpeak);
+                utterance.lang = 'pt-BR';
+                utterance.rate = 0.95; // Velocidade levemente reduzida para idosos entenderem melhor
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        // Carregar contato salvo ao iniciar
+        window.onload = function() {
+            loadEmergencyContact();
+        };
+    </script>
+</body>
+</html>
